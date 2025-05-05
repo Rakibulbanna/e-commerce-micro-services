@@ -1,0 +1,41 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Payment {
+    id            String   @id @default(uuid())
+    orderId       String
+    customerId    String
+    amount        Float
+    currency      String
+    paymentMethod String // credit_card, debit_card, paypal
+    status        String   @default("pending") // pending, completed, failed, refunded
+    error         String?
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+
+    @@index([orderId])
+    @@index([customerId])
+    @@index([status])
+    @@index([createdAt])
+}
+
+enum PaymentStatus {
+    PENDING
+    PROCESSING
+    COMPLETED
+    FAILED
+    REFUNDED
+}
+
+enum PaymentMethod {
+    CREDIT_CARD
+    DEBIT_CARD
+    PAYPAL
+    BANK_TRANSFER
+}

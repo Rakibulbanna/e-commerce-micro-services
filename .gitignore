@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Testing
+coverage/
+
+# Production
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker/
+docker-compose.override.yml
+registry-data/
+**/registry-data/
+
+# Prisma
+prisma/*.db
+prisma/migrations/
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# SSL certificates
+*.pem
+*.key
+*.crt
+
+# MongoDB data
+data/db/
+
+# Redis data
+dump.rdb
+
+# RabbitMQ data
+rabbitmq_data/
+
+# Grafana data
+grafana_data/
+
+# Prometheus data
+prometheus_data/
+
+# Build artifacts
+**/dist/
+**/build/
+**/node_modules/
+
+# Docker volumes
+**/volumes/
+volumes/
+
+# Local development
+*.local 

@@ -1,0 +1,82 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Order {
+    id           String        @id @default(uuid())
+    userId       String
+    status       OrderStatus   @default(PENDING)
+    total        Float
+    items        OrderItem[]
+    shippingInfo ShippingInfo?
+    paymentInfo  PaymentInfo?
+    createdAt    DateTime      @default(now())
+    updatedAt    DateTime      @updatedAt
+}
+
+model OrderItem {
+    id        String   @id @default(uuid())
+    orderId   String
+    order     Order    @relation(fields: [orderId], references: [id])
+    productId String
+    quantity  Int
+    price     Float
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model ShippingInfo {
+    id        String         @id @default(uuid())
+    orderId   String         @unique
+    order     Order          @relation(fields: [orderId], references: [id])
+    address   String
+    city      String
+    state     String
+    country   String
+    zipCode   String
+    status    ShippingStatus @default(PENDING)
+    createdAt DateTime       @default(now())
+    updatedAt DateTime       @updatedAt
+}
+
+model PaymentInfo {
+    id        String        @id @default(uuid())
+    orderId   String        @unique
+    order     Order         @relation(fields: [orderId], references: [id])
+    amount    Float
+    status    PaymentStatus @default(PENDING)
+    createdAt DateTime      @default(now())
+    updatedAt DateTime      @updatedAt
+}
+
+enum OrderStatus {
+    PENDING
+    PROCESSING
+    SHIPPED
+    DELIVERED
+    CANCELLED
+}
+
+enum ShippingStatus {
+    PENDING
+    PROCESSING
+    SHIPPED
+    DELIVERED
+    FAILED
+}
+
+enum PaymentStatus {
+    PENDING
+    PROCESSING
+    COMPLETED
+    FAILED
+    REFUNDED
+}

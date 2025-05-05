@@ -1,0 +1,41 @@
+{
+    "name": "e-commerce-base",
+    "version": "1.0.0",
+    "description": "Base package for e-commerce microservices",
+    "main": "dist/index.js",
+    "scripts": {
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.10.0",
+        "ajv": "^8.12.0",
+        "amqplib": "^0.10.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.0",
+        "express": "^4.18.0",
+        "express-rate-limit": "^7.1.0",
+        "helmet": "^7.1.0",
+        "jsonwebtoken": "^9.0.0",
+        "morgan": "^1.10.0",
+        "prom-client": "^15.1.0",
+        "winston": "^3.11.0"
+    },
+    "devDependencies": {
+        "@types/amqplib": "^0.10.7",
+        "@types/cors": "^2.8.0",
+        "@types/express": "^4.17.0",
+        "@types/jsonwebtoken": "^9.0.0",
+        "@types/morgan": "^1.9.0",
+        "@types/node": "^20.0.0",
+        "@typescript-eslint/eslint-plugin": "^7.0.0",
+        "@typescript-eslint/parser": "^7.0.0",
+        "eslint": "^8.0.0",
+        "nodemon": "^3.0.0",
+        "prettier": "^3.0.0",
+        "prisma": "^5.10.0",
+        "ts-node": "^10.9.0",
+        "typescript": "^5.0.0"
+    }
+}
